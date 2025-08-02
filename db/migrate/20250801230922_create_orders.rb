@@ -5,8 +5,9 @@ class CreateOrders < ActiveRecord::Migration[8.0]
       t.integer :status
       t.references :user, null: false, foreign_key: true
       t.string :location
-
       t.timestamps
+      validates :user_id, presence: true
+
     end
   end
 end
