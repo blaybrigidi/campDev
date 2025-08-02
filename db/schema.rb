@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_02_010821) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_02_080646) do
   create_table "orders", force: :cascade do |t|
     t.string "item_name"
-    t.integer "status"
+    t.integer "order_status"
     t.integer "user_id", null: false
     t.string "location"
     t.datetime "created_at", null: false
@@ -27,6 +27,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_02_010821) do
     t.datetime "updated_at", null: false
     t.string "phone_number"
     t.string "year"
+    t.string "email"
+    t.string "password"
   end
 
   add_foreign_key "orders", "users"
