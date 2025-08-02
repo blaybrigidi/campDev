@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_01_224304) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_01_230922) do
+  create_table "orders", force: :cascade do |t|
+    t.string "item_name"
+    t.integer "status"
+    t.integer "user_id", null: false
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -18,4 +28,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_01_224304) do
     t.string "phone_number"
     t.string "year"
   end
+
+  add_foreign_key "orders", "users"
 end
