@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_02_213337) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_03_072230) do
   create_table "orders", force: :cascade do |t|
     t.string "item_name"
     t.integer "order_status"
@@ -28,7 +28,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_02_213337) do
     t.string "phone_number"
     t.string "year"
     t.string "email"
-    t.string "password"
     t.string "password_digest"
   end
 

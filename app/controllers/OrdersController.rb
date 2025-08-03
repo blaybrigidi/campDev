@@ -1,4 +1,11 @@
 class OrdersController < ApplicationController
+    def index
+        orders = Order.any?
+        if orders
+            render orders
+        else
+            render json: {message: "There are currently no ongoing orders"}
+    end
     def create
       order = Order.new(order_params)
       if order.save
