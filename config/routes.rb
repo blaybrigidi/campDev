@@ -12,15 +12,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  #Create all CRUD endpoints for user
+  # Create all CRUD endpoints for user
   resources :users
-  #Create all CRUD endpoints for orders
+  # Create all CRUD endpoints for orders
   resources :orders do
     collection do
       get :by_user
     end
   end
 
-  #Endpoint for login 
+   # Endpoint for login
    post "/login", to: "sessions#login"
 end

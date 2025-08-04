@@ -6,7 +6,4 @@ class Order < ApplicationRecord
   def set_default_status
     self.order_status ||= :pending
 end
-  
-
-
 end

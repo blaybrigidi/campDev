@@ -7,7 +7,6 @@ class CreateOrders < ActiveRecord::Migration[8.0]
       t.string :location
       t.timestamps
       validates :user_id, presence: true
-
     end
   end
 end

@@ -7,6 +7,4 @@ class SessionsController < ApplicationController
         render json: { message: "Incorrect Email or Password" }, status: :unauthorized
       end
     end
-  end
-  
-
+end
