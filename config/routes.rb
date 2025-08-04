@@ -14,8 +14,12 @@ Rails.application.routes.draw do
 
   #Create all CRUD endpoints for user
   resources :users
-  #Create all CRUD endpoints for products
-  resources :orders
+  #Create all CRUD endpoints for orders
+  resources :orders do
+    collection do
+      get :by_user
+    end
+  end
 
   #Endpoint for login 
    post "/login", to: "sessions#login"
