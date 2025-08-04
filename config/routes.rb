@@ -23,4 +23,10 @@ Rails.application.routes.draw do
 
    # Endpoint for login
    post "/login", to: "sessions#login"
+
+   #Endpoint to cancel order
+   patch "/orders/:id/cancel", to: "orders#cancel"
+
+   #Endpoint to update order
+   patch "orders/:id/update", to: "orders#update"
 end
