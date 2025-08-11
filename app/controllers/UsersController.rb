@@ -11,15 +11,32 @@ class UsersController < ApplicationController
     end
 
     def show
-      user = User.find(params[:id])
-      render json: user
-    rescue ActiveRecord::RecordNotFound
-      render json: { error: "User not found" }, status: :not_found
+      if params[:id].to_i == @current_user.id
+        render json: { user: { id: @current_user.id, name: @current_user.name, email: @current_user.email, phone_number: @current_user.phone_number, year: @current_user.year } }
+      else
+        render json: { error: "Unauthorized" }, status: :unauthorized
+      end
+    end
+    
+    def update
+      if params[:id].to_i == @current_user.id
+        if @current_user.update(user_update_params)
+          render json: { message: "Profile updated successfully", user: { id: @current_user.id, name: @current_user.name, email: @current_user.email, phone_number: @current_user.phone_number, year: @current_user.year } }, status: :ok
+        else
+          render json: { errors: @current_user.errors.full_messages }, status: :unprocessable_entity
+        end
+      else
+        render json: { error: "Unauthorized" }, status: :unauthorized
+      end
     end
 
     private
 
     def user_params
       params.require(:user).permit(:name, :email, :year, :password, :phone_number)
+    end
+    
+    def user_update_params
+      params.require(:user).permit(:name, :email, :year, :phone_number)
     end
 end

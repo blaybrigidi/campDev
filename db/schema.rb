@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_213234) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_11_035419) do
+  create_table "messages", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "user_id", null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id", "created_at"], name: "index_messages_on_order_id_and_created_at"
+    t.index ["order_id"], name: "index_messages_on_order_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "item_name"
     t.integer "order_status"
@@ -18,6 +29,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_213234) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "service_provider_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -32,5 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_213234) do
     t.string "api_key"
   end
 
+  add_foreign_key "messages", "orders"
+  add_foreign_key "messages", "users"
   add_foreign_key "orders", "users"
 end

@@ -18,7 +18,13 @@ Rails.application.routes.draw do
   resources :orders do
     collection do
       get :by_user
+      get :marketplace      # View all pending orders
+      get :my_services      # View orders I'm servicing
     end
+    member do
+      patch :accept_order   # Accept a specific order
+    end
+    resources :messages, only: [:index, :create]  # Nested messages for orders
   end
 
    # Endpoint for login
